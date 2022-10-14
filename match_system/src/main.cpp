@@ -57,7 +57,7 @@ class Pool
         {
             printf("Match Result: %d %d\n", a, b);
 
-            std::shared_ptr<TTransport> socket(new TSocket("123.57.47.211", 9090));
+            std::shared_ptr<TTransport> socket(new TSocket("127.0.0.1", 9090));
             std::shared_ptr<TTransport> transport(new TBufferedTransport(socket));
             std::shared_ptr<TProtocol> protocol(new TBinaryProtocol(transport));
             SaveClient client(protocol);
@@ -253,7 +253,7 @@ void consume_task()
 int main(int argc, char **argv) {
     TThreadedServer server(
             std::make_shared<MatchProcessorFactory>(std::make_shared<MatchCloneFactory>()),
-            std::make_shared<TServerSocket>(9090), //port
+            std::make_shared<TServerSocket>(9091), //port
             std::make_shared<TBufferedTransportFactory>(),
             std::make_shared<TBinaryProtocolFactory>());
 
